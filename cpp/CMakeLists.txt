@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.8)
-project(cpp_template VERSION 1.0 LANGUAGES CXX)
+project(cpp_homework VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
@@ -26,33 +26,51 @@ endif()
 ################################
 
 file(GLOB_RECURSE SOURCES src/**.cpp)
-file(GLOB_RECURSE HEADERS src/**.h)
+file(GLOB_RECURSE HEADERS src/**.h src/**.hpp)
 
-add_executable(${PROJECT_NAME}
-  ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
-  ${SOURCES}
-  ${HEADERS}
-)
-
-source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/src
-  FILES ${SOURCES}
-)
-
-source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/src
-  FILES ${HEADERS}
-)
-
-target_include_directories(${PROJECT_NAME} PRIVATE
-  ${CMAKE_CURRENT_SOURCE_DIR}/src
-)
+# add_executable(${PROJECT_NAME}
+#   ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
+#   ${SOURCES}
+#   ${HEADERS}
+# )
 
 set(GLOBAL_LINK_LIB         
 
 )
 
-target_link_libraries(${PROJECT_NAME}
-  ${GLOBAL_LINK_LIB}
-)
+################################
+# remove main.cpp for hometask -> test should work
+################################
+
+set (EXCLUDE_MAIN "main.cpp")
+foreach (TMP_PATH ${SOURCES})
+    string (FIND ${TMP_PATH} ${EXCLUDE_MAIN} EXCLUDE_MAIN_FOUND)
+    if (NOT ${EXCLUDE_MAIN_FOUND} EQUAL -1)
+        list (REMOVE_ITEM SOURCES ${TMP_PATH})
+    endif ()
+endforeach(TMP_PATH)
+
+function(SETEXE REQUIRED_ARG)
+    file(GLOB_RECURSE SOURCES${REQUIRED_ARG} src/task${REQUIRED_ARG}/**.cpp)
+    file(GLOB_RECURSE HEADERS${REQUIRED_ARG} src/task${REQUIRED_ARG}/**.h src/task${REQUIRED_ARG}/**.hpp)
+    message(STATUS "Source files: ${SOURCES${REQUIRED_ARG}}")
+    add_executable(${PROJECT_NAME}${REQUIRED_ARG}  ${SOURCES${REQUIRED_ARG}})
+    target_include_directories(${PROJECT_NAME}${REQUIRED_ARG} PRIVATE ${HEADERS${REQUIRED_ARG}})
+    target_link_libraries(${PROJECT_NAME}${REQUIRED_ARG}  ${GLOBAL_LINK_LIB})
+endfunction()
+
+################################
+# start executables
+################################
+
+setexe("1309")
+
+################################
+# end executables
+################################
+
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/src  FILES ${SOURCES})
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/src  FILES ${HEADERS})
 
 ################################
 # GTest
