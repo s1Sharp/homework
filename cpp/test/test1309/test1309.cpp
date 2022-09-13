@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "task1309/part1.hpp"
+#include "task1309/part2.hpp"
 
 
 TEST(Task1309, Part1_min) {
@@ -40,4 +41,43 @@ TEST(Task1309, Part1_swap) {
     part1::swap(t3, t3);
     EXPECT_EQ((double)1.0, t3);
     EXPECT_TRUE((std::is_same<void, decltype(part1::swap(t3, t3))>::value));
+}
+
+TEST(Task1309, Part2_callback_int8_t) {
+    // Expect equality.
+    constexpr int array_size = 10;
+    using data_type = int8_t;
+    std::array<data_type, array_size> ArrayResult = { 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+
+    std::array<data_type, array_size> Array = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+    part2::iter(Array.data(), Array.size(), part2::custom_increment_print<data_type>);
+
+    EXPECT_EQ(ArrayResult, Array);
+    EXPECT_EQ(array_size, Array.size());
+}
+
+TEST(Task1309, Part2_callback_uint64_t) {
+    // Expect equality.
+    constexpr int array_size = 10;
+    using data_type = uint64_t;
+    std::array<data_type, array_size> ArrayResult = { 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+
+    std::array<data_type, array_size> Array = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+    part2::iter(Array.data(), Array.size(), part2::custom_increment_print<data_type>);
+
+    EXPECT_EQ(ArrayResult, Array);
+    EXPECT_EQ(array_size, Array.size());
+}
+
+TEST(Task1309, Part2_callback_double) {
+    // Expect equality.
+    constexpr int array_size = 10;
+    using data_type = double;
+    std::array<data_type, array_size> ArrayResult = { 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+
+    std::array<data_type, array_size> Array = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+    part2::iter(Array.data(), Array.size(), part2::custom_increment_print<data_type>);
+
+    EXPECT_EQ(ArrayResult, Array);
+    EXPECT_EQ(array_size, Array.size());
 }
