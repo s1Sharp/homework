@@ -11,8 +11,12 @@ namespace part2 {
 
     template <typename T>
     void custom_increment_print(T& val) {
+#ifdef GOOGLETEST_INCLUDE_GTEST_GTEST_H_
+        val++;
+#else
         std::cout << "Val before = " << val << std::endl;
         val++;
         std::cout << "Val after = " << val << std::endl;
+#endif
     }
 }

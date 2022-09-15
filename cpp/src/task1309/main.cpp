@@ -1,6 +1,8 @@
 #include <iostream>
 #include "part1.hpp"
 #include "part2.hpp"
+#include "part3.hpp"
+
 
 int main()
 {
@@ -30,6 +32,9 @@ int main()
 	std::cout << "\ntask2\n";
     std::array<int8_t, 5> Array = { 2, 3, 4, 5, 6};
     part2::iter(Array.data(), Array.size(), part2::custom_increment_print<int8_t>);
+
+
+    part3::main3();
 
 	return 0;
 }

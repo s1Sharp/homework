@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include "task1309/part1.hpp"
 #include "task1309/part2.hpp"
+#include "task1309/part3.hpp"
 
 
 TEST(Task1309, Part1_min) {
@@ -80,4 +81,158 @@ TEST(Task1309, Part2_callback_double) {
 
     EXPECT_EQ(ArrayResult, Array);
     EXPECT_EQ(array_size, Array.size());
+}
+
+static inline double cdround(const double x, const size_t prec = 3) {
+    return round(x * (prec * 10)) / (prec * 10);
+}
+
+template <typename T>
+static bool equalComplex(const std::complex<T> &lhs, const std::complex<T> &rhs) {
+    return (cdround(lhs.real()) == cdround(rhs.real()) && cdround(lhs.imag()) == cdround(rhs.imag()));
+}
+
+TEST(Task1309, Part3_boundary_cases_a0) {
+    // Expect equality.
+    using namespace part3;
+    QuadEquation<double> q1(0, 1, 1);
+
+    EXPECT_EQ(q1.isEquationExists, QuadEquation<double>::EQUATION_STATE::NOT_EXISTS_EQ);
+}
+
+TEST(Task1309, Part3_boundary_cases_b0_c0) {
+    // Expect equality.
+    using namespace part3;
+    std::complex<double> expect1(0.0, 0.0);
+    QuadEquation<double> q1(1, 0, 0);
+    EXPECT_EQ(q1.m_z1, expect1);
+    EXPECT_EQ(q1.isEquationExists, QuadEquation<double>::EQUATION_STATE::ONE_REAL_EQ);
+}
+
+TEST(Task1309, Part3_boundary_cases_a0_b0_c0) {
+    // Expect equality.
+    using namespace part3;
+    QuadEquation<double> q1(0, 0, 0);
+
+    EXPECT_EQ(q1.isEquationExists, QuadEquation<double>::EQUATION_STATE::INF_EQ);
+}
+
+TEST(Task1309, Part3_boundary_cases_b0) {
+    // Expect equality.
+    using namespace part3;
+    std::complex<double> expect1(0.0, 1.0);
+    std::complex<double> expect2(0.0, -1.0);
+    QuadEquation<double> q1(1, 0, 1);
+
+    EXPECT_TRUE(equalComplex(q1.m_z1, expect1));
+    EXPECT_TRUE(equalComplex(q1.m_z2, expect2));
+    EXPECT_EQ(q1.isEquationExists, QuadEquation<double>::EQUATION_STATE::TWO_IMG_EQ);
+}
+
+TEST(Task1309, Part3_boundary_cases_c0) {
+    // Expect equality.
+    using namespace part3;
+    std::complex<double> expect1(0.0, 0.0);
+    std::complex<double> expect2(-1.0, 0.0);
+    QuadEquation<double> q1(1, 1, 0);
+
+    EXPECT_TRUE(equalComplex(q1.m_z1, expect1));
+    EXPECT_TRUE(equalComplex(q1.m_z2, expect2));
+    EXPECT_EQ(q1.isEquationExists, QuadEquation<double>::EQUATION_STATE::TWO_REAL_EQ);
+}
+
+TEST(Task1309, Part3_basic_funtions_two_img_1) {
+    // Expect equality.
+    using namespace part3;
+    std::complex<double> expect1(-3.0 / 5,  4.0 / 5);
+    std::complex<double> expect2(-3.0 / 5, -4.0 / 5);
+    QuadEquation<double> q1(5, 6, 5);
+
+    EXPECT_TRUE(equalComplex(q1.m_z1, expect1));
+    EXPECT_TRUE(equalComplex(q1.m_z2, expect2));
+    EXPECT_EQ(q1.isEquationExists, QuadEquation<double>::EQUATION_STATE::TWO_IMG_EQ);
+}
+
+TEST(Task1309, Part3_basic_funtions_two_img_2) {
+    // Expect equality.
+    using namespace part3;
+    std::complex<double> expect1(3.0 / 2,  5.0 / 2);
+    std::complex<double> expect2(3.0 / 2, -5.0 / 2);
+    QuadEquation<double> q1(1, -3, 8.5);
+
+    EXPECT_TRUE(equalComplex(q1.m_z1, expect1));
+    EXPECT_TRUE(equalComplex(q1.m_z2, expect2));
+    EXPECT_EQ(q1.isEquationExists, QuadEquation<double>::EQUATION_STATE::TWO_IMG_EQ);
+}
+
+TEST(Task1309, Part3_basic_funtions_two_img_3) {
+    // Expect equality.
+    using namespace part3;
+    std::complex<double> expect1(0.0,  1.0);
+    std::complex<double> expect2(0.0, -1.0);
+    QuadEquation<double> q1(2, 0, 2);
+
+    EXPECT_TRUE(equalComplex(q1.m_z1, expect1));
+    EXPECT_TRUE(equalComplex(q1.m_z2, expect2));
+    EXPECT_EQ(q1.isEquationExists, QuadEquation<double>::EQUATION_STATE::TWO_IMG_EQ);
+}
+
+TEST(Task1309, Part3_basic_funtions_two_img_4) {
+    // Expect equality.
+    using namespace part3;
+    std::complex<double> expect1(-2.0,  5.0);
+    std::complex<double> expect2(-2.0, -5.0);
+    QuadEquation<double> q1(1, 4, 29);
+
+    EXPECT_TRUE(equalComplex(q1.m_z1, expect1));
+    EXPECT_TRUE(equalComplex(q1.m_z2, expect2));
+    EXPECT_EQ(q1.isEquationExists, QuadEquation<double>::EQUATION_STATE::TWO_IMG_EQ);
+}
+
+TEST(Task1309, Part3_basic_funtions_two_img_5) {
+    // Expect equality.
+    using namespace part3;
+    std::complex<double> expect1(-0.518844221105528,  0.722674173232695);
+    std::complex<double> expect2(-0.518844221105528, -0.722674173232695);
+    QuadEquation<double> q1(398, 413, 315);
+
+    EXPECT_TRUE(equalComplex(q1.m_z1, expect1));
+    EXPECT_TRUE(equalComplex(q1.m_z2, expect2));
+    EXPECT_EQ(q1.isEquationExists, QuadEquation<double>::EQUATION_STATE::TWO_IMG_EQ);
+}
+
+TEST(Task1309, Part3_basic_funtions_two_real_1) {
+    // Expect equality.
+    using namespace part3;
+    std::complex<double> expect1(-0.765549960006128, 0.0);
+    std::complex<double> expect2(-205.734450039994,  0.0);
+    QuadEquation<double> q1(2, 413, 315);
+
+    EXPECT_TRUE(equalComplex(q1.m_z1, expect1));
+    EXPECT_TRUE(equalComplex(q1.m_z2, expect2));
+    EXPECT_EQ(q1.isEquationExists, QuadEquation<double>::EQUATION_STATE::TWO_REAL_EQ);
+}
+
+TEST(Task1309, Part3_basic_funtions_two_real_2) {
+    // Expect equality.
+    using namespace part3;
+    std::complex<double> expect1(-1.14434539959896, 0.0);
+    std::complex<double> expect2(-14.855654600401,  0.0);
+    QuadEquation<double> q1(1, 16, 17);
+
+    EXPECT_TRUE(equalComplex(q1.m_z1, expect1));
+    EXPECT_TRUE(equalComplex(q1.m_z2, expect2));
+    EXPECT_EQ(q1.isEquationExists, QuadEquation<double>::EQUATION_STATE::TWO_REAL_EQ);
+}
+
+TEST(Task1309, Part3_basic_funtions_one_real_1) {
+    // Expect equality.
+    using namespace part3;
+    std::complex<double> expect1(-2.0 / 3, 0.0);
+    std::complex<double> expect2(-2.0 / 3, 0.0);
+    QuadEquation<double> q1(9, 12, 4);
+
+    EXPECT_TRUE(equalComplex(q1.m_z1, expect1));
+    EXPECT_TRUE(equalComplex(q1.m_z2, expect2));
+    EXPECT_EQ(q1.isEquationExists, QuadEquation<double>::EQUATION_STATE::ONE_REAL_EQ);
 }
