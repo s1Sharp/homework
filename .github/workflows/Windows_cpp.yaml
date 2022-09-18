@@ -5,6 +5,8 @@ on:
   push:
     paths:
       - "!.github/**"
+      - "!python/**"
+      - "!mpi/**"
       - ".github/workflows/Windows_cpp.yaml"
       - "cpp/**"
 
