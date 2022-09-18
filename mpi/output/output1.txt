@@ -1,0 +1,4 @@
+Count of all processors: 4, from process 3: Hello, World!
+Count of all processors: 4, from process 0: Hello, World!
+Count of all processors: 4, from process 2: Hello, World!
+Count of all processors: 4, from process 1: Hello, World!
