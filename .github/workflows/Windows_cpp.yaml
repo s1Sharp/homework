@@ -5,10 +5,10 @@ on:
   push:
     paths:
       - "!.github/**"
-      - "!python/**"
-      - "!mpi/**"
+      - "!./python/**"
+      - "!./mpi/**"
       - ".github/workflows/Windows_cpp.yaml"
-      - "cpp/**"
+      - "./cpp/**"
 
 jobs:
   build:
