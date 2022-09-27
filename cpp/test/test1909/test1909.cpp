@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "task1909/part1.hpp"
+#include "task1909/part2.hpp"
 
 class MatrixMultipleParametersTests :public ::testing::TestWithParam<std::tuple<size_t, size_t>> {};
 
@@ -79,3 +80,83 @@ INSTANTIATE_TEST_SUITE_P(
                 std::make_tuple(2, 2, (double)2.828427),
                 std::make_tuple(4, 5, (double)6.4031),
                 std::make_tuple(122, 344, (double)364.993)));
+
+
+TEST(Task1909, Part2_no_template_int_1) {
+    // Expect equality.
+    using namespace part2;
+    std::vector<int>input = {4, 90, 0};
+    std::vector<int>output = {0, 4, 90};
+    part2::custom_sort(input);
+
+    EXPECT_TRUE(input == output);
+}
+
+TEST(Task1909, Part2_no_template_int_2) {
+    // Expect equality.
+    using namespace part2;
+    std::vector<int>input = {10, 2, 3, 4, 5, 6, 7, 8, 9, 1};
+    std::vector<int>output = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    part2::custom_sort(input);
+
+    EXPECT_TRUE(input == output);
+}
+
+TEST(Task1909, Part2_no_template_int_empty) {
+    // Expect equality.
+    using namespace part2;
+    std::vector<int>input = {};
+    std::vector<int>output = {};
+    part2::custom_sort(input);
+
+    EXPECT_TRUE(input == output);
+}
+
+
+TEST(Task1909, Part2_no_template_double) {
+    // Expect equality.
+    using namespace part2;
+    std::vector<double>input = {4., 90., 0.};
+    std::vector<double>output = {0., 4., 90.};
+    part2::custom_sort(input);
+
+    EXPECT_TRUE(input == output);
+}
+
+TEST(Task1909, Part2_no_template_float) {
+    // Expect equality.
+    using namespace part2;
+    std::vector<float>input = {4.f, 90.f, 0.f};
+    std::vector<float>output = {0.f, 4.f, 90.f};
+    part2::custom_sort(input);
+
+    EXPECT_TRUE(input == output);
+}
+
+TEST(Task1909, Part2_template_factorial_5) {
+    // Expect equality.
+    using namespace part2;
+    constexpr int64_t F_5 = part2::Factorial<5>::value;
+    EXPECT_EQ(F_5 , 120);
+}
+
+TEST(Task1909, Part2_template_factorial_15) {
+    // Expect equality.
+    using namespace part2;
+    constexpr int64_t F_15 = part2::Factorial<15>::value;
+    EXPECT_EQ(F_15 , 1307674368000);
+}
+
+TEST(Task1909, Part2_template_factorial_0) {
+    // Expect equality.
+    using namespace part2;
+    constexpr int64_t F_0 = part2::Factorial<0>::value;
+    EXPECT_EQ(F_0 , 1);
+}
+
+TEST(Task1909, Part2_template_factorial_1) {
+    // Expect equality.
+    using namespace part2;
+    constexpr int64_t F_1 = part2::Factorial<1>::value;
+    EXPECT_EQ(F_1 , 1);
+}
