@@ -1,6 +1,5 @@
 #include <iostream>
 #include "part1.hpp"
-#include "part2.hpp"
 
 int main()
 {
