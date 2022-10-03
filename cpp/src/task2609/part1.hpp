@@ -7,6 +7,7 @@
 #include <ctime>
 #include <random>
 #include <cmath>
+#include <cstring>
 #include <string>
 
 namespace part1 {
