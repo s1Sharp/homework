@@ -7,6 +7,7 @@
 #include <ctime>
 #include <random>
 #include <cmath>
+#include <cstring>
 #include <string>
 
 namespace part1 {
@@ -105,8 +106,8 @@ namespace part1 {
         const size_t rhs_len = strlen(rhs) + 1;
         const size_t newLen = lhs_len + rhs_len + 1;
         char* p_newStr = (char *)calloc(newLen, sizeof(char));
-        strcpy_s(p_newStr, lhs_len, lhs);
-        strcat_s(p_newStr, newLen, rhs);
+        strcpy(p_newStr, lhs);
+        strcat(p_newStr, rhs);
         return p_newStr;
     }
 
