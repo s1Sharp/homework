@@ -101,20 +101,16 @@ namespace part1 {
         if (lhs == nullptr || rhs == nullptr) {
             return nullptr;
         }
-        const size_t newLen = strlen(lhs) + strlen(rhs); 
-        char* p_newStr = new char[newLen];
-        strcat(strcat(p_newStr, lhs), rhs);
+        const size_t lhs_len = strlen(lhs) + 1;
+        const size_t rhs_len = strlen(rhs) + 1;
+        const size_t newLen = lhs_len + rhs_len + 1;
+        char* p_newStr = (char *)calloc(newLen, sizeof(char));
+        strcpy_s(p_newStr, lhs_len, lhs);
+        strcat_s(p_newStr, newLen, rhs);
         return p_newStr;
     }
 
     char* sum(char * lhs, char * rhs) {
-        if (lhs == nullptr || rhs == nullptr) {
-            return nullptr;
-        }
-        const size_t newLen = strlen(lhs) + strlen(rhs) + 1;
-        char* p_newStr = (char *)calloc(newLen, sizeof(char));
-        strcpy(p_newStr, lhs);
-        strcat(p_newStr, rhs);
-        return p_newStr;
+        return sum((const char *)lhs, (const char *)rhs);
     }
 }

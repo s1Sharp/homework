@@ -47,7 +47,7 @@ TEST(Task2609, Part1_c_String) {
     size_t retry = 10000;
     while (retry) {
         retry--;
-        auto csResult = part1::sum(cs1, cs2);
+        char* csResult = part1::sum(cs1, cs2);
         EXPECT_EQ(expectResult, strcmp(csResult, expect_c_String));
         free(csResult);
     }
