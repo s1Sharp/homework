@@ -24,9 +24,9 @@ using namespace std;
 typedef unsigned char byte_t;
 
 // message length, bytes
-const int MESSAGE_LENGTH = 1024 * 1024; // 1 MiB
+const int MESSAGE_LENGTH = (1024 * 1024); // 1 MiB
 // how many times a measurement should be performed
-const int BENCHMARK_RUNS = 10000;
+const int BENCHMARK_RUNS = (10000);
 // nanoseconds to seconds
 const double NNSEC_TO_SEC = (1000000000.0);
 
@@ -42,7 +42,7 @@ struct BenchmarkResult {
 	double average_time;
 };
 
-#pragma comment(linker, "/STACK:4000000")
+#pragma comment(linker, "/STACK:10000000")
 
 /**
  * Benchmark a function in an MPI environment.
@@ -105,7 +105,7 @@ int benchmark(MPI_Comm global_comm, int GENERAL_PROCESS, bool f(MPI_Comm),
 			total_time += delta_ns.count() / NNSEC_TO_SEC;
 			// cout << "delta=" << delta_ns.count() << "ns, total=" << total_time
 			//      << "s" << endl;
-		}
+			}
 		}
 	}
 
@@ -121,7 +121,7 @@ int benchmark(MPI_Comm global_comm, int GENERAL_PROCESS, bool f(MPI_Comm),
 	// compute average delta on master process
 	if (global_rank == GENERAL_PROCESS) {
 		for (int i = 0; i < slave_comm_size; i++) {
-		total_time += total_times[i];
+			total_time += total_times[i];
 		}
 
 		delete[] total_times;
@@ -134,17 +134,17 @@ int benchmark(MPI_Comm global_comm, int GENERAL_PROCESS, bool f(MPI_Comm),
 	}
 
 	return 0;
-	}
+}
 
-	void print_benchmark_result(string function_identifier,
-								unsigned int message_size,
-								BenchmarkResult &result) {
+void print_benchmark_result(string function_identifier,
+							unsigned int message_size,
+							BenchmarkResult &result) {
 	cout << function_identifier << ": " << message_size << "-byte message, "
 		<< result.runs << " runs, avg. " << result.average_time << "s, "
 		<< result.total_time << "s total" << endl;
-	}
+}
 
-	bool ping_pong(MPI_Comm comm) {
+bool ping_pong(MPI_Comm comm) {
 	int global_rank;
 	MPI_Comm_rank(comm, &global_rank);
 
@@ -188,6 +188,7 @@ int benchmark(MPI_Comm global_comm, int GENERAL_PROCESS, bool f(MPI_Comm),
 		// send message back
 		MPI_Send(buffer, MESSAGE_LENGTH, MPI_BYTE, 0, 0, local_comm);
 	}
+
 	delete [] buffer;
 	return true;
 }
@@ -255,7 +256,7 @@ int main(int argc, char **argv) {
     MPI_Comm_size(MPI_COMM_WORLD, &ProcNum);
 
     // assuming that rank 0 is master and ranks 1, 2 are slaves
-    if (ProcNum < 3) {
+    if (ProcNum != 3) {
 		cerr << "Incorrect processors! Need 3! Current: " << ProcNum << endl;
 		MPI_Finalize();
 		return 1;
@@ -280,5 +281,4 @@ int main(int argc, char **argv) {
    		print_benchmark_result("PingPing", MESSAGE_LENGTH, result);
 
     MPI_Finalize();
-    return 0;
 }
