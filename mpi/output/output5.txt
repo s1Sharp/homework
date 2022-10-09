@@ -1,0 +1,53 @@
+
+Proc 1: Get row
+60 38 89 58 90 
+
+Proc 1: Send diagonal item to general
+60
+
+Proc 1: Get row
+46 38 67 36 39 
+
+Proc 1: Send diagonal item to general
+36
+
+Proc 3: Get row
+80 91 45 29 42 
+
+Proc 3: Send diagonal item to general
+45
+
+Proc 3: Get row
+2 96 57 53 40 
+
+Proc 3: No diagonal item
+
+Proc 2: Get row
+80 55 36 29 4 
+
+Proc 2: Send diagonal item to general
+55
+
+Proc 2: Get row
+51 50 57 15 97 
+
+Proc 2: Send diagonal item to general
+97
+
+Proc 0: Init matrix
+60	38	89	58	90	
+80	55	36	29	4	
+80	91	45	29	42	
+46	38	67	36	39	
+51	50	57	15	97	
+2	96	57	53	40	
+33	15	11	71	48	
+90	43	12	31	2	
+13	83	97	82	95	
+87	24	13	98	80	
+42	98	70	74	88	
+
+Proc 0: Start calculating diagonal
+
+Proc 0: Finish calculating diagonal
+60 55 45 36 97 
