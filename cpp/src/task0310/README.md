@@ -1,0 +1,1 @@
+[lecture 4 03.10](./../../docs/lecture4_03.10.pdf)
