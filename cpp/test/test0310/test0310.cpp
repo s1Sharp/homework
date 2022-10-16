@@ -21,11 +21,10 @@ TEST(Task0310, Queue_construct) {
 
 TEST(Task0310, Queue_destruct) {
     // Expect equality.
-    QUE::Queue<int> q;
-    q.push(5);
-    EXPECT_EQ(5, q.peek());
-    q.~Queue();
-    EXPECT_EQ(0, q.size());
+    QUE::Queue<int>* q = new QUE::Queue<int>();
+    q->push(5);
+    EXPECT_EQ(5, q->peek());
+    delete q;
 }
 
 TEST(Task0310, Queue_maxsize) {

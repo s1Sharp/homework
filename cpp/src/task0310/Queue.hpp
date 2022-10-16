@@ -43,8 +43,10 @@ namespace QUE {
     // Destructor
     template <class X>
     Queue<X>::~Queue() {
-        delete []arr;
-        arr = nullptr;
+        if (arr != nullptr) {
+            delete []arr; 
+            arr = nullptr;
+        }
         capacity = 0;
         front = 0;
         back = 0;
