@@ -12,7 +12,7 @@ all: mkdir task1 task2 task3 task4 task5 task6
 
 mkdir:
 	IF exist output ( echo output exists ) ELSE ( mkdir output && echo output created)
-	
+
 task1: mkdir task1.cpp
 	$(run) $(exe)1.exe > $(of)1.txt
 
@@ -30,3 +30,9 @@ task5: mkdir task5.cpp
 
 task6: mkdir task6.cpp
 	mpiexec -n 3 $(exe)6.exe > $(of)6.txt
+
+task7: mkdir task7.cpp
+	$(run) $(exe)7.exe > $(of)7.txt
+
+task8: mkdir task8.cpp
+	$(run) $(exe)8.exe > $(of)8.txt

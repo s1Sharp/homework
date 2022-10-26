@@ -1,0 +1,23 @@
+
+Proc 0: Init array
+5 -3 -5 -5 -6 7 -10 9 0 -7 
+
+Proc 0: Get l1 norm of chunk
+5 -3 -5 
+13
+
+Proc 0: Get l1 norm of array
+57
+
+
+Proc 1: Get l1 norm of chunk
+-5 -6 7 
+18
+
+Proc 2: Get l1 norm of chunk
+-10 9 0 
+19
+
+Proc 3: Get l1 norm of chunk
+-7 0 0 
+7
