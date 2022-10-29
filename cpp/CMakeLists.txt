@@ -8,6 +8,23 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR})
 list(APPEND CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR})
 
 ################################
+# configure conan
+################################
+
+# Download automatically, you can also just copy the conan.cmake file
+if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
+  message(STATUS "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
+  file(DOWNLOAD "https://raw.githubusercontent.com/conan-io/cmake-conan/v0.16.1/conan.cmake"
+                "${CMAKE_BINARY_DIR}/conan.cmake"
+                EXPECTED_HASH SHA256=396e16d0f5eabdc6a14afddbcfff62a54a7ee75c6da23f32f7a31bc85db23484
+                TLS_VERIFY ON)
+endif()
+
+include(${CMAKE_BINARY_DIR}/conan.cmake)
+conan_cmake_run(CONANFILE conanfile.txt BASIC_SETUP CMAKE_TARGETS NO_OUTPUT_DIRS BUILD missing)
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+
+################################
 # build type
 ################################
 
@@ -34,7 +51,7 @@ file(GLOB_RECURSE HEADERS src/**.h src/**.hpp)
 #   ${HEADERS}
 # )
 
-set(GLOBAL_LINK_LIB         
+set(GLOBAL_LINK_LIB
 
 )
 
@@ -56,7 +73,8 @@ function(SETEXE REQUIRED_ARG)
     message(STATUS "Source files: ${SOURCES${REQUIRED_ARG}}")
     add_executable(${PROJECT_NAME}${REQUIRED_ARG}  ${SOURCES${REQUIRED_ARG}})
     target_include_directories(${PROJECT_NAME}${REQUIRED_ARG} PRIVATE ${HEADERS${REQUIRED_ARG}})
-    target_link_libraries(${PROJECT_NAME}${REQUIRED_ARG}  ${GLOBAL_LINK_LIB})
+    conan_basic_setup(${PROJECT_NAME}${REQUIRED_ARG})
+    target_link_libraries(${PROJECT_NAME}${REQUIRED_ARG} ${GLOBAL_LINK_LIB} ${CONAN_LIBS})
 endfunction()
 
 ################################
@@ -68,6 +86,7 @@ setexe("1909")
 setexe("2609")
 setexe("0310")
 setexe("1710")
+setexe("2410")
 
 ################################
 # end executables
@@ -119,3 +138,4 @@ target_link_libraries(
 
 include(GoogleTest)
 gtest_discover_tests(Google_Tests_run)
+conan_basic_setup(Google_Tests_run)
