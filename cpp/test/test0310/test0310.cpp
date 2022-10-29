@@ -53,7 +53,6 @@ TEST(Task0310, Queue_isFull) {
     for (size_t i = 0; i < custom_size; i++) {
         EXPECT_FALSE(q.isFull());
         q.push(static_cast<int>(i));
-        
     }
     EXPECT_TRUE(q.isFull());
 }

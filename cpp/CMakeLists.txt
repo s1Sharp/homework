@@ -67,6 +67,7 @@ setexe("1309")
 setexe("1909")
 setexe("2609")
 setexe("0310")
+setexe("1010")
 
 ################################
 # end executables
