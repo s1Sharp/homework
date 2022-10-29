@@ -1,1 +1,1 @@
-[lecture 5 17.10](./../../docs/lecture5_17.10.pdf)
+[lecture 6 24.10](./../../docs/lecture6_24.10.pdf)

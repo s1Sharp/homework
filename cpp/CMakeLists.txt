@@ -73,8 +73,7 @@ function(SETEXE REQUIRED_ARG)
     message(STATUS "Source files: ${SOURCES${REQUIRED_ARG}}")
     add_executable(${PROJECT_NAME}${REQUIRED_ARG}  ${SOURCES${REQUIRED_ARG}})
     target_include_directories(${PROJECT_NAME}${REQUIRED_ARG} PRIVATE ${HEADERS${REQUIRED_ARG}})
-    conan_basic_setup(${PROJECT_NAME}${REQUIRED_ARG})
-    target_link_libraries(${PROJECT_NAME}${REQUIRED_ARG} ${GLOBAL_LINK_LIB} ${CONAN_LIBS})
+    target_link_libraries(${PROJECT_NAME}${REQUIRED_ARG} ${GLOBAL_LINK_LIB})
 endfunction()
 
 ################################
@@ -138,4 +137,3 @@ target_link_libraries(
 
 include(GoogleTest)
 gtest_discover_tests(Google_Tests_run)
-conan_basic_setup(Google_Tests_run)

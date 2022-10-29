@@ -10,8 +10,6 @@ int main()
    */
 
     std::cout << Fibonachi::Fibonachi<10>::value << std::endl;
-    std::cout << Fibonachi::LongFibonachi<100>::value << std::endl;
-    std::cout << Fibonachi::LongFibonachi<502>::value << std::endl;
 
 /*
   *   Part 2

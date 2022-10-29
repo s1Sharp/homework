@@ -1,6 +1,6 @@
 #pragma once
 
-#include <boost/multiprecision/cpp_int.hpp>
+#include <stdint.h>
 
 namespace Fibonachi {
     template<size_t INDEX>
@@ -17,21 +17,5 @@ namespace Fibonachi {
     template<>
     struct Fibonachi<0> {
         static constexpr uint64_t value = 0;
-    };
-
-    template<size_t INDEX>
-    struct LongFibonachi {
-        static constexpr boost::multiprecision::uint1024_t value = 
-            LongFibonachi<INDEX - 1>::value + LongFibonachi<INDEX - 2>::value;
-    };
-
-    template<>
-    struct LongFibonachi<1> {
-        static constexpr boost::multiprecision::uint1024_t value = 1;
-    };
-
-    template<>
-    struct LongFibonachi<0> {
-        static constexpr boost::multiprecision::uint1024_t value = 0;
     };
 }

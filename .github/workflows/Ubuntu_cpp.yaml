@@ -42,6 +42,14 @@ jobs:
         echo "CUDAHOSTCXX=/usr/bin/g++-${{ matrix.gcc }}" >> $GITHUB_ENV
       shell: bash
 
+    - name: Configure conan
+      working-directory: ${{ env.cpp_dir }}
+      run: |
+        python3 -m pip install --upgrade pip
+        python3 -m pip install conan
+        source ~/.profile
+      shell: bash
+
     - name: Configure cmake
       working-directory: ${{ env.cpp_dir }}
       id: configure

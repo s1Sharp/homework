@@ -9,14 +9,6 @@ TEST(Task2410, Fibonachi_eq) {
 
     EXPECT_EQ(static_cast<uint64_t>(5), Fibonachi::Fibonachi<5>::value);
     EXPECT_EQ(static_cast<uint64_t>(55), Fibonachi::Fibonachi<10>::value);
-
-    const boost::multiprecision::uint1024_t eq1
-        (std::string("354224848179261915075"));
-    EXPECT_EQ(eq1, Fibonachi::LongFibonachi<100>::value);
-
-    const boost::multiprecision::uint1024_t eq2
-        (std::string("365014740723634211012237077906479355996081581501455497852747829366800199361550174096573645929019489792751"));
-    EXPECT_EQ(eq2, Fibonachi::LongFibonachi<502>::value);
 }
 
 TEST(Task2410, monomial_2d) {
