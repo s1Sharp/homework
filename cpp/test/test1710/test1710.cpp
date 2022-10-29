@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
-#include "task1010/Queue_ptr.hpp"
-#include "task1010/Stack_pair.hpp"
+#include "task1710/Queue_ptr.hpp"
+#include "task1710/Stack_pair.hpp"
 
-TEST(Task1010, Queue_ptr_construct) {
+TEST(Task1710, Queue_ptr_construct) {
     // Expect equality.
     QUE::Queue<int*> q_deafult_size;
     EXPECT_NE(QUE::DEFAULT_SIZE, q_deafult_size.size());
@@ -20,7 +20,7 @@ TEST(Task1010, Queue_ptr_construct) {
     }
 }
 
-TEST(Task1010, Queue_ptr_destruct) {
+TEST(Task1710, Queue_ptr_destruct) {
     // Expect equality.
     QUE::Queue<int*> *q = new QUE::Queue<int*>();
     q->push(new int(5));
@@ -28,7 +28,7 @@ TEST(Task1010, Queue_ptr_destruct) {
     delete q;
 }
 
-TEST(Task1010, Queue_ptr_maxsize) {
+TEST(Task1710, Queue_ptr_maxsize) {
     // Expect equality.
     size_t custom_size = 1;
     QUE::Queue<int*> q(custom_size);
@@ -46,7 +46,7 @@ TEST(Task1010, Queue_ptr_maxsize) {
     EXPECT_EQ(0, q.size());
 }
 
-TEST(Task1010, Queue_ptr_isFull) {
+TEST(Task1710, Queue_ptr_isFull) {
     // Expect equality.
     size_t custom_size = 10;
     QUE::Queue<int*> q(custom_size);
@@ -58,7 +58,7 @@ TEST(Task1010, Queue_ptr_isFull) {
     EXPECT_TRUE(q.isFull());
 }
 
-TEST(Task1010, Stack_with_pair) {
+TEST(Task1710, Stack_with_pair) {
     // Expect equality.
     Stack::Stack<std::pair<std::string, std::string>> stack_with_pair;
     stack_with_pair.push(std::make_pair(std::string("a"), std::string("b")));
