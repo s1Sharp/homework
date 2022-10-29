@@ -37,6 +37,11 @@ jobs:
       shell: bash
       run: cmake --version
 
+    - name: Configure conan
+      working-directory: ${{ env.cpp_dir }}
+      run: ./scripts/install_conan.ps1
+      shell: bash
+
     - name: Configure CMake
       working-directory: ${{ env.cpp_dir }}
       id: configure

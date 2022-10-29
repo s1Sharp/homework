@@ -73,8 +73,7 @@ function(SETEXE REQUIRED_ARG)
     message(STATUS "Source files: ${SOURCES${REQUIRED_ARG}}")
     add_executable(${PROJECT_NAME}${REQUIRED_ARG}  ${SOURCES${REQUIRED_ARG}})
     target_include_directories(${PROJECT_NAME}${REQUIRED_ARG} PRIVATE ${HEADERS${REQUIRED_ARG}})
-    conan_basic_setup(${PROJECT_NAME}${REQUIRED_ARG})
-    target_link_libraries(${PROJECT_NAME}${REQUIRED_ARG} ${GLOBAL_LINK_LIB} ${CONAN_LIBS})
+    target_link_libraries(${PROJECT_NAME}${REQUIRED_ARG} ${GLOBAL_LINK_LIB})
 endfunction()
 
 ################################
@@ -87,6 +86,8 @@ setexe("2609")
 setexe("0310")
 setexe("1710")
 setexe("2410")
+conan_basic_setup("cpp_homework2410")
+target_link_libraries("cpp_homework2410" ${CONAN_LIBS})
 
 ################################
 # end executables
