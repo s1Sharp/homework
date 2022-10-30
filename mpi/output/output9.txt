@@ -1,0 +1,6 @@
+Local min element: -690 at global rank 1
+Local min element: -768 at global rank 3
+389 777 10 51 49 -690 -224 -17 -902 -522 -768 974 
+Local min element: 10 at global rank 0
+Min element: -902 at index 8
+Local min element: -902 at global rank 2

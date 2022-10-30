@@ -36,3 +36,6 @@ task7: mkdir task7.cpp
 
 task8: mkdir task8.cpp
 	$(run) $(exe)8.exe > $(of)8.txt
+
+task9: mkdir task9.cpp
+	$(run) $(exe)9.exe > $(of)9.txt
