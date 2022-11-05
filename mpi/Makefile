@@ -39,3 +39,6 @@ task8: mkdir task8.cpp
 
 task9: mkdir task9.cpp
 	$(run) $(exe)9.exe > $(of)9.txt
+
+task10: mkdir task10.cpp
+	mpiexec -n 10 $(exe)10.exe > $(of)10.txt

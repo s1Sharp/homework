@@ -37,3 +37,4 @@ set_target_properties(MPI_task6 PROPERTIES LINK_FLAGS -Wl, --stack, /STACK:10000
 setexempi(task7)
 setexempi(task8)
 setexempi(task9)
+setexempi(task10)
